@@ -1,12 +1,13 @@
 package com.hugo.businesssystem.entities;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,8 @@ public class Payment implements Serializable{
     private Long id;
     @Column(name = "instant_pay", columnDefinition ="TIMESTAMP")
     private LocalDateTime instantPay;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
+    private Order order;
 }

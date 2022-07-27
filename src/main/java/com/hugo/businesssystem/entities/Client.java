@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,8 @@ public class Client implements Serializable{
     private Long id;
     private String name;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 }
 

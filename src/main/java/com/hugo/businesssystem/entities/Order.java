@@ -1,5 +1,6 @@
 package com.hugo.businesssystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Order implements Serializable {
 
     @NonNull
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JsonIgnore
     private Client client;
 
     @NonNull

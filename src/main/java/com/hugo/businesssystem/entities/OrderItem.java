@@ -2,9 +2,7 @@ package com.hugo.businesssystem.entities;
 
 import com.hugo.businesssystem.entities.pk.OrderItemPK;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 import javax.persistence.EmbeddedId;
@@ -29,5 +27,9 @@ public class OrderItem implements Serializable {
         id.setProduct(product);
         this.price = product.getPrice();
         this.quantity = quantity;
+    }
+
+    public Double getSubTotal(){
+        return quantity * price;
     }
 }

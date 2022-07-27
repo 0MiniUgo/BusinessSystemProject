@@ -21,7 +21,6 @@ public class Order implements Serializable {
 
     @NonNull
     @ManyToOne
-    @JsonIgnore
     private Client client;
 
     @NonNull
@@ -29,8 +28,10 @@ public class Order implements Serializable {
     @JoinColumn(name = "payment_id")
     private Payment payment;
 
-    @OneToMany(mappedBy = "id.order", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "id.order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderItem> items = new HashSet<>();
+
 
     public Order(Long id, @NonNull Client client, @NonNull Payment payment) {
         this.id = id;

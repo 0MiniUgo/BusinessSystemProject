@@ -1,9 +1,9 @@
 package com.hugo.businesssystem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hugo.businesssystem.entities.pk.OrderItemPK;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,7 +18,6 @@ public class OrderItem implements Serializable {
 
     @EmbeddedId
     private OrderItemPK id = new OrderItemPK();
-
     private Integer quantity;
     private Double price;
 
@@ -29,7 +28,4 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public Double getSubTotal(){
-        return quantity * price;
-    }
 }

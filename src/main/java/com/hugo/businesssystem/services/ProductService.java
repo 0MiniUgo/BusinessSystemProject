@@ -3,8 +3,11 @@ package com.hugo.businesssystem.services;
 import com.hugo.businesssystem.entities.Product;
 import com.hugo.businesssystem.entities.dto.ProductDTO;
 import com.hugo.businesssystem.repositories.ProductRepository;
+import com.hugo.businesssystem.services.exceptions.DatabaseException;
 import com.hugo.businesssystem.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +34,17 @@ public class ProductService {
         Product product = toEntity(productDTO);
 
         return repository.save(product);
+    }
+
+    public void delete(Long id){
+
+        try {
+            repository.deleteById(id);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private Product toEntity(ProductDTO productDTO){

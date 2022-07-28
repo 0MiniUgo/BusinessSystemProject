@@ -3,8 +3,11 @@ package com.hugo.businesssystem.services;
 import com.hugo.businesssystem.entities.Client;
 import com.hugo.businesssystem.entities.dto.ClientDTO;
 import com.hugo.businesssystem.repositories.ClientRepository;
+import com.hugo.businesssystem.services.exceptions.DatabaseException;
 import com.hugo.businesssystem.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +32,17 @@ public class ClientService {
         Client client = toEntity(clientDTO);
 
         return repository.save(client);
+    }
+
+    public void delete(Long id){
+
+        try {
+            repository.deleteById(id);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException(e.getMessage());
+        }catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private Client toEntity(ClientDTO clientDTO){

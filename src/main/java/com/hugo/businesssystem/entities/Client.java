@@ -19,12 +19,17 @@ import lombok.NoArgsConstructor;
 public class Client implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
     @JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
+
+    public Client(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
 

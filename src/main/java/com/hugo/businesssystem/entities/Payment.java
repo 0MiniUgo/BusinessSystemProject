@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Payment implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "instant_pay", columnDefinition ="TIMESTAMP")
     private LocalDateTime instantPay;

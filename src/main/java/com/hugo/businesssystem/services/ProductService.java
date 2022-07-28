@@ -1,6 +1,7 @@
 package com.hugo.businesssystem.services;
 
 import com.hugo.businesssystem.entities.Product;
+import com.hugo.businesssystem.entities.dto.ProductDTO;
 import com.hugo.businesssystem.repositories.ProductRepository;
 import com.hugo.businesssystem.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,15 @@ public class ProductService {
         Optional<Product> product = repository.findById(id);
 
         return product.orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
+    public Product insert(ProductDTO productDTO){
+        Product product = toEntity(productDTO);
+
+        return repository.save(product);
+    }
+
+    private Product toEntity(ProductDTO productDTO){
+        return new Product(null, productDTO.getName(), productDTO.getPrice());
     }
 }

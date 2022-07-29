@@ -47,6 +47,19 @@ public class ProductService {
         }
     }
 
+    public Product update(Long id, ProductDTO productDTO){
+        Product product =
+                repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+
+        updateData(product, productDTO);
+        return repository.save(product);
+    }
+
+    private void updateData(Product product, ProductDTO productDTO) {
+        product.setName(productDTO.getName());
+        product.setPrice(productDTO.getPrice());
+    }
+
     private Product toEntity(ProductDTO productDTO){
         return new Product(null, productDTO.getName(), productDTO.getPrice());
     }

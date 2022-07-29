@@ -45,4 +45,11 @@ public class ProductResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+        service.update(id, productDTO);
+
+        return ResponseEntity.noContent().build();
+    }
 }

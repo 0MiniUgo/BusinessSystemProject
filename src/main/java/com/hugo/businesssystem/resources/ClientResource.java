@@ -46,4 +46,11 @@ public class ClientResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> upgrade(@PathVariable Long id, @RequestBody ClientDTO clientDTO){
+        service.update(id, clientDTO);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

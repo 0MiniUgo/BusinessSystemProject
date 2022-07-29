@@ -45,6 +45,19 @@ public class ClientService {
         }
     }
 
+    public Client update(Long id, ClientDTO clientDTO){
+        Client client =
+                repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+
+        updateData(client, clientDTO);
+
+        return repository.save(client);
+    }
+
+    private void updateData(Client client, ClientDTO clientDTO) {
+        client.setName(clientDTO.getName());
+    }
+
     private Client toEntity(ClientDTO clientDTO){
 
         return new Client(null, clientDTO.getName());

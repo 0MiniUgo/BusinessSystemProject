@@ -17,16 +17,13 @@ import java.util.Set;
 @JsonPropertyOrder({"id", "client", "items", "total", "payment"})
 public class Order implements Serializable {
 
-    @NonNull
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NonNull
     @ManyToOne
     private Client client;
 
-    @NonNull
     @OneToOne
     @JoinColumn(name = "payment_id")
     private Payment payment;
@@ -35,7 +32,7 @@ public class Order implements Serializable {
     private Set<OrderItem> items = new HashSet<>();
 
 
-    public Order(Long id, @NonNull Client client, @NonNull Payment payment) {
+    public Order(Long id, Client client, Payment payment) {
         this.id = id;
         this.client = client;
         this.payment = payment;

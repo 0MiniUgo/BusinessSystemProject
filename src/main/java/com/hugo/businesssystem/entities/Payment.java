@@ -28,4 +28,9 @@ public class Payment implements Serializable{
     @JsonIgnore
     @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
     private Order order;
+
+    public Payment(Long id, LocalDateTime instantPay) {
+        this.id = id;
+        this.instantPay = instantPay;
+    }
 }

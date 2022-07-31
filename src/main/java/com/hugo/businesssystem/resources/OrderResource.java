@@ -40,4 +40,16 @@ public class OrderResource {
 
         return ResponseEntity.created(uri).body(order);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Order> update(@PathVariable Long id, @RequestBody OrderDTO orderDTO){
+        Order order = service.update(id, orderDTO);
+        return ResponseEntity.ok(order);
+    }
 }

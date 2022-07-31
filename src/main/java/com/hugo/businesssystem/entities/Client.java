@@ -24,7 +24,7 @@ public class Client implements Serializable{
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     public Client(Long id, String name) {

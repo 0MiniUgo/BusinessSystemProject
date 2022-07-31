@@ -26,7 +26,7 @@ public class Product implements Serializable{
     private Double price;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "id.product")
+    @OneToMany(mappedBy = "id.product", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<OrderItem> items = new HashSet<>();
 
     public Product(Long id, String name, Double price) {

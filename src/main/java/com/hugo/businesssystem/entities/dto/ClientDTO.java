@@ -1,13 +1,13 @@
 package com.hugo.businesssystem.entities.dto;
 
 import com.hugo.businesssystem.entities.Client;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ClientDTO {
 
     private String name;

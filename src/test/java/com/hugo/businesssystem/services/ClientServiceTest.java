@@ -38,8 +38,6 @@ class ClientServiceTest {
         BDDMockito.when(clientRepositoryMock.save(ArgumentMatchers.any(Client.class)))
                 .thenReturn(ClientCreator.createValidClient());
 
-        BDDMockito.doNothing().when(clientRepositoryMock).delete(ArgumentMatchers.any(Client.class));
-
     }
 
     @Test
@@ -90,7 +88,8 @@ class ClientServiceTest {
     @Test
     void delete_RemovesClient_WhenSuccessful(){
 
-        Assertions.assertThatCode(() -> clientService.delete(1L))
-                .doesNotThrowAnyException();
+        final Long id = 1L;
+        clientService.delete(id);
+        BDDMockito.verify(clientRepositoryMock).deleteById(id);
     }
 }

@@ -1,10 +1,7 @@
 package com.hugo.businesssystem.entities.dto;
 
 import com.hugo.businesssystem.entities.Client;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +10,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OrderDTO {
 
     private Long clientId;

@@ -29,9 +29,6 @@ public class OrderService {
     private PaymentRepository paymentRepository;
 
     @Autowired
-    private OrderItemRepository orderItemRepository;
-
-    @Autowired
     private ProductRepository productRepository;
 
     public List<Order> findAll(){
@@ -77,8 +74,14 @@ public class OrderService {
         order.getItems().clear();
 
         for(OrderItemDTO orderItemDTO : orderDTO.getItems()){
+
+            Product product = productRepository.getReferenceById(orderItemDTO.getProductId());
+
             OrderItem orderItem
-                    = new OrderItem(order, productRepository.getReferenceById(orderItemDTO.getProductId()), orderItemDTO.getQuantity());
+                    = new OrderItem(order,
+                    product,
+                    product.getPrice(),
+                    orderItemDTO.getQuantity());
 
             orderItems.add(orderItem);
         }

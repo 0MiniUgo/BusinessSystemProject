@@ -14,6 +14,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Embeddable
 public class OrderItemPK implements Serializable {
 

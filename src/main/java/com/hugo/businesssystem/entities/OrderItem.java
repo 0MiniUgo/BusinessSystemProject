@@ -3,6 +3,8 @@ package com.hugo.businesssystem.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.hugo.businesssystem.entities.pk.OrderItemPK;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +17,8 @@ import java.util.Objects;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "tb_order_item")
 @JsonPropertyOrder({"id", "price", "quantity", "subTotal"})
 public class OrderItem implements Serializable {
@@ -28,6 +32,12 @@ public class OrderItem implements Serializable {
         id.setOrder(order);
         id.setProduct(product);
         this.price = product.getPrice();
+        this.quantity = quantity;
+    }
+    public OrderItem(Order order, Product product, double price, int quantity){
+        id.setOrder(order);
+        id.setProduct(product);
+        this.price = price;
         this.quantity = quantity;
     }
 

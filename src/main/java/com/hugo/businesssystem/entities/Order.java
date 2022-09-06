@@ -14,6 +14,8 @@ import java.util.Set;
 @Table(name = "tb_order")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @JsonPropertyOrder({"id", "client", "items", "total", "payment"})
 public class Order implements Serializable {
 
